@@ -1,0 +1,37 @@
+import { CourseSummary } from "./course";
+
+export type SkillStatus = "locked" | "available" | "in_progress" | "completed";
+export type UnitStatus = "locked" | "available" | "in_progress" | "completed";
+
+export interface SkillPath {
+  id: string;
+  title: string;
+  description: string | null;
+  order_index: number;
+  xp_reward: number;
+  prerequisite_skill_id: string | null;
+  prerequisite_title?: string | null;
+  status: SkillStatus;
+  completion_percent: number;
+  crown_level: number;
+}
+
+export interface UnitPath {
+  id: string;
+  title: string;
+  description: string | null;
+  order_index: number;
+  status?: UnitStatus;
+  completion_percent?: number;
+  completed_skills?: number;
+  total_skills?: number;
+  skills: SkillPath[];
+}
+
+export interface PathResponse {
+  course: CourseSummary;
+  recommended_skill_id?: string | null;
+  recommended_lesson_id?: string | null;
+  recommended_unit_id?: string | null;
+  units: UnitPath[];
+}

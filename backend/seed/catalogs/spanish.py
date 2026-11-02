@@ -1,0 +1,860 @@
+"""
+Spanish Course Catalog — CourseSpec definition.
+
+Source language: English (en)
+Target language: Spanish (es)
+
+Spanish catalog expanded to:
+  - 5 Units
+  - 20 Skills (4 skills per unit)
+  - 60 Lessons (3 lessons per skill: Learn, Practice, Mastery)
+  - ~360 Exercises (6 exercises per lesson)
+
+Preserves existing stable skill IDs:
+  - skill_greetings
+  - skill_basics
+  - skill_food
+  - skill_family
+  - skill_directions
+  - skill_travel
+"""
+
+from seed.generators import CourseSpec, UnitSpec, SkillSpec, VocabItem, SentenceItem
+
+SPANISH_COURSE_SPEC = CourseSpec(
+    id="crs_spanish",
+    name="Spanish",
+    code="es",
+    source_language="en",
+    target_language="es",
+    description="Learn Spanish from scratch — greetings, daily life, travel, communication, and conversation.",
+    units=[
+        # ─────────────────────────────────────────────────────────────
+        # UNIT 1 — Foundations
+        # ─────────────────────────────────────────────────────────────
+        UnitSpec(
+            id="unit_01",
+            title="Unit 1: Foundations",
+            description="Master basic greetings, polite expressions, introductions, and essential pronouns.",
+            order_index=1,
+            skills=[
+                SkillSpec(
+                    id="skill_greetings",
+                    title="Greetings",
+                    description="Say hello, goodbye, and introduce yourself.",
+                    objective="Learner can greet someone and exchange polite expressions in Spanish.",
+                    difficulty=1,
+                    order_index=1,
+                    xp_reward=15,
+                    prerequisite_skill_id=None,
+                    vocabulary=[
+                        VocabItem("Hola", "Hello", hint="H___"),
+                        VocabItem("Adiós", "Goodbye", hint="A____"),
+                        VocabItem("Buenos días", "Good morning", hint="B_____ d___"),
+                        VocabItem("Buenas noches", "Good evening", hint="B_____ n_____"),
+                        VocabItem("Gracias", "Thank you", hint="G______"),
+                        VocabItem("Por favor", "Please", hint="P__ f____"),
+                        VocabItem("De nada", "You're welcome", hint="D_ n___"),
+                        VocabItem("Hasta luego", "See you later", hint="H____ l____"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Buenos días, ¿cómo estás?",
+                            source="Good morning, how are you?",
+                            words=["Buenos", "días", "cómo", "estás"],
+                            blank_word="días",
+                            blank_before="Buenos",
+                            blank_after=", ¿cómo estás?",
+                        ),
+                        SentenceItem(
+                            target="Muchas gracias por todo.",
+                            source="Thank you very much for everything.",
+                            words=["Muchas", "gracias", "por", "todo"],
+                        ),
+                        SentenceItem(
+                            target="Hasta luego, amigo.",
+                            source="See you later, friend.",
+                            words=["Hasta", "luego", "amigo"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_basics",
+                    title="Basics",
+                    description="Essential nouns, pronouns, and basic sentences.",
+                    objective="Learner can form simple sentences using basic pronouns and verbs.",
+                    difficulty=1,
+                    order_index=2,
+                    xp_reward=20,
+                    prerequisite_skill_id="skill_greetings",
+                    vocabulary=[
+                        VocabItem("Yo", "I", hint="Y_"),
+                        VocabItem("Tú", "You", hint="T_"),
+                        VocabItem("él / ella", "He / She"),
+                        VocabItem("nosotros", "We", hint="n_______"),
+                        VocabItem("soy", "I am", hint="s__"),
+                        VocabItem("eres", "You are", hint="e___"),
+                        VocabItem("niño", "boy", hint="n___"),
+                        VocabItem("mujer", "woman", hint="m____"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Yo soy un niño.",
+                            source="I am a boy.",
+                            words=["Yo", "soy", "un", "niño", "una", "niña"],
+                            blank_word="soy",
+                            blank_before="Yo",
+                            blank_after="un niño.",
+                        ),
+                        SentenceItem(
+                            target="Tú eres una mujer.",
+                            source="You are a woman.",
+                            words=["Tú", "eres", "una", "mujer"],
+                        ),
+                        SentenceItem(
+                            target="Nosotros somos amigos.",
+                            source="We are friends.",
+                            words=["Nosotros", "somos", "amigos"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_sp_introductions",
+                    title="Introductions",
+                    description="Me llamo, mi nombre es — introducing yourself and others.",
+                    objective="Learner can introduce themselves and state their name in Spanish.",
+                    difficulty=1,
+                    order_index=3,
+                    xp_reward=20,
+                    prerequisite_skill_id="skill_basics",
+                    vocabulary=[
+                        VocabItem("Me llamo", "My name is", hint="M_ l____"),
+                        VocabItem("Mucho gusto", "Nice to meet you", hint="M____ g____"),
+                        VocabItem("Soy de", "I am from", hint="S__ d_"),
+                        VocabItem("España", "Spain", hint="E_____"),
+                        VocabItem("México", "Mexico", hint="M_____"),
+                        VocabItem("amigo", "friend", hint="a____"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Me llamo Carlos.",
+                            source="My name is Carlos.",
+                            words=["Me", "llamo", "Carlos"],
+                            blank_word="llamo",
+                            blank_before="Me",
+                            blank_after="Carlos.",
+                        ),
+                        SentenceItem(
+                            target="Mucho gusto en conocerte.",
+                            source="Nice to meet you.",
+                            words=["Mucho", "gusto", "en", "conocerte"],
+                        ),
+                        SentenceItem(
+                            target="Yo soy de México.",
+                            source="I am from Mexico.",
+                            words=["Yo", "soy", "de", "México"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_sp_pronouns",
+                    title="Pronouns",
+                    description="Personal pronouns: yo, tú, él, ella, nosotros, ellos.",
+                    objective="Learner can identify and use subject pronouns correctly in Spanish.",
+                    difficulty=1,
+                    order_index=4,
+                    xp_reward=20,
+                    prerequisite_skill_id="skill_sp_introductions",
+                    vocabulary=[
+                        VocabItem("usted", "you (formal)", hint="u____"),
+                        VocabItem("ellos", "they (masculine)", hint="e____"),
+                        VocabItem("ellas", "they (feminine)", hint="e____"),
+                        VocabItem("vosotros", "you all", hint="v_______"),
+                        VocabItem("es", "is", hint="e_"),
+                        VocabItem("son", "are", hint="s__"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Ellos son estudiantes.",
+                            source="They are students.",
+                            words=["Ellos", "son", "estudiantes"],
+                            blank_word="son",
+                            blank_before="Ellos",
+                            blank_after="estudiantes.",
+                        ),
+                        SentenceItem(
+                            target="¿Cómo se llama usted?",
+                            source="What is your name (formal)?",
+                            words=["Cómo", "se", "llama", "usted"],
+                        ),
+                        SentenceItem(
+                            target="Ellas son hermanas.",
+                            source="They are sisters.",
+                            words=["Ellas", "son", "hermanas"],
+                        ),
+                    ],
+                ),
+            ],
+        ),
+        # ─────────────────────────────────────────────────────────────
+        # UNIT 2 — Everyday Life
+        # ─────────────────────────────────────────────────────────────
+        UnitSpec(
+            id="unit_02",
+            title="Unit 2: Everyday Life",
+            description="Discuss meals, family members, home environment, and daily routines.",
+            order_index=2,
+            skills=[
+                SkillSpec(
+                    id="skill_food",
+                    title="Food & Drinks",
+                    description="Vocabulary for meals, fruits, and drinks.",
+                    objective="Learner can order food and drinks in a restaurant.",
+                    difficulty=2,
+                    order_index=1,
+                    xp_reward=20,
+                    prerequisite_skill_id="skill_sp_pronouns",
+                    vocabulary=[
+                        VocabItem("la manzana", "the apple", hint="l_ m______"),
+                        VocabItem("el pan", "the bread", hint="e_ p__"),
+                        VocabItem("la leche", "the milk", hint="l_ l____"),
+                        VocabItem("el agua", "the water", hint="e_ a___"),
+                        VocabItem("el café", "the coffee", hint="e_ c___"),
+                        VocabItem("la carne", "the meat", hint="l_ c____"),
+                        VocabItem("la fruta", "the fruit", hint="l_ f____"),
+                        VocabItem("el queso", "the cheese", hint="e_ q____"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Ella come pan con queso.",
+                            source="She eats bread with cheese.",
+                            words=["Ella", "come", "pan", "con", "queso", "leche"],
+                            blank_word="pan",
+                            blank_before="Ella come",
+                            blank_after="con queso.",
+                        ),
+                        SentenceItem(
+                            target="Yo bebo café por la mañana.",
+                            source="I drink coffee in the morning.",
+                            words=["Yo", "bebo", "café", "por", "la", "mañana"],
+                        ),
+                        SentenceItem(
+                            target="¿Tiene usted la carta, por favor?",
+                            source="Do you have the menu, please?",
+                            words=["Tiene", "usted", "la", "carta", "por", "favor"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_family",
+                    title="Family Members",
+                    description="Mother, father, brother, sister.",
+                    objective="Learner can talk about family relationships in Spanish.",
+                    difficulty=2,
+                    order_index=2,
+                    xp_reward=20,
+                    prerequisite_skill_id="skill_food",
+                    vocabulary=[
+                        VocabItem("el padre", "father", hint="e_ p____"),
+                        VocabItem("la madre", "mother", hint="l_ m____"),
+                        VocabItem("el hermano", "brother", hint="e_ h______"),
+                        VocabItem("la hermana", "sister", hint="l_ h______"),
+                        VocabItem("el hijo", "son", hint="e_ h___"),
+                        VocabItem("la hija", "daughter", hint="l_ h___"),
+                        VocabItem("los abuelos", "grandparents", hint="l__ a______"),
+                        VocabItem("la familia", "the family", hint="l_ f_____"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Mi madre es muy amable.",
+                            source="My mother is very kind.",
+                            words=["Mi", "madre", "es", "muy", "amable"],
+                            blank_word="madre",
+                            blank_before="Mi",
+                            blank_after="es muy amable.",
+                        ),
+                        SentenceItem(
+                            target="Tengo dos hermanos y una hermana.",
+                            source="I have two brothers and a sister.",
+                            words=["Tengo", "dos", "hermanos", "y", "una", "hermana"],
+                        ),
+                        SentenceItem(
+                            target="Mi familia es grande.",
+                            source="My family is big.",
+                            words=["Mi", "familia", "es", "grande"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_sp_home",
+                    title="Home",
+                    description="House, room, kitchen, bed, table, door.",
+                    objective="Learner can describe items and rooms inside a home in Spanish.",
+                    difficulty=2,
+                    order_index=3,
+                    xp_reward=20,
+                    prerequisite_skill_id="skill_family",
+                    vocabulary=[
+                        VocabItem("la casa", "the house", hint="l_ c___"),
+                        VocabItem("el cuarto", "the room", hint="e_ c_____"),
+                        VocabItem("la cocina", "the kitchen", hint="l_ c_____"),
+                        VocabItem("la cama", "the bed", hint="l_ c___"),
+                        VocabItem("la mesa", "the table", hint="l_ m___"),
+                        VocabItem("la puerta", "the door", hint="l_ p_____"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Mi casa es bonita.",
+                            source="My house is pretty.",
+                            words=["Mi", "casa", "es", "bonita"],
+                            blank_word="casa",
+                            blank_before="Mi",
+                            blank_after="es bonita.",
+                        ),
+                        SentenceItem(
+                            target="La comida está en la mesa.",
+                            source="The food is on the table.",
+                            words=["La", "comida", "está", "en", "la", "mesa"],
+                        ),
+                        SentenceItem(
+                            target="Por favor cierra la puerta.",
+                            source="Please close the door.",
+                            words=["Por", "favor", "cierra", "la", "puerta"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_sp_routine",
+                    title="Daily Routine",
+                    description="Wake up, wash, work, study, sleep in Spanish.",
+                    objective="Learner can describe daily schedule and regular activities.",
+                    difficulty=2,
+                    order_index=4,
+                    xp_reward=20,
+                    prerequisite_skill_id="skill_sp_home",
+                    vocabulary=[
+                        VocabItem("despertarse", "to wake up", hint="d__________"),
+                        VocabItem("lavarse", "to wash", hint="l______"),
+                        VocabItem("trabajar", "to work", hint="t_______"),
+                        VocabItem("estudiar", "to study", hint="e_______"),
+                        VocabItem("dormir", "to sleep", hint="d_____"),
+                        VocabItem("cada día", "every day", hint="c___ d__"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Me despierto temprano a las seis.",
+                            source="I wake up early at six.",
+                            words=["Me", "despierto", "temprano", "a", "las", "seis"],
+                            blank_word="despierto",
+                            blank_before="Me",
+                            blank_after="temprano a las seis.",
+                        ),
+                        SentenceItem(
+                            target="Él trabaja en una oficina.",
+                            source="He works in an office.",
+                            words=["Él", "trabaja", "en", "una", "oficina"],
+                        ),
+                        SentenceItem(
+                            target="Nosotros estudiamos español.",
+                            source="We study Spanish.",
+                            words=["Nosotros", "estudiamos", "español"],
+                        ),
+                    ],
+                ),
+            ],
+        ),
+        # ─────────────────────────────────────────────────────────────
+        # UNIT 3 — Travel
+        # ─────────────────────────────────────────────────────────────
+        UnitSpec(
+            id="unit_03",
+            title="Unit 3: Travel",
+            description="Navigate city streets, ask for directions, use public transit, and check into hotels.",
+            order_index=3,
+            skills=[
+                SkillSpec(
+                    id="skill_directions",
+                    title="Directions",
+                    description="Left, right, straight ahead, street.",
+                    objective="Learner can ask for and give directions in a Spanish-speaking city.",
+                    difficulty=3,
+                    order_index=1,
+                    xp_reward=25,
+                    prerequisite_skill_id="skill_sp_routine",
+                    vocabulary=[
+                        VocabItem("la izquierda", "the left", hint="l_ i________"),
+                        VocabItem("la derecha", "the right", hint="l_ d______"),
+                        VocabItem("recto", "straight ahead", hint="r____"),
+                        VocabItem("la calle", "the street", hint="l_ c____"),
+                        VocabItem("el hotel", "the hotel", hint="e_ h____"),
+                        VocabItem("el banco", "the bank", hint="e_ b____"),
+                        VocabItem("¿Dónde está?", "Where is?", hint="¿D____ e___?"),
+                        VocabItem("cerca", "near", hint="c____"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="¿Dónde está el hotel?",
+                            source="Where is the hotel?",
+                            words=["Dónde", "está", "el", "hotel", "banco"],
+                            blank_word="está",
+                            blank_before="¿Dónde",
+                            blank_after="el hotel?",
+                        ),
+                        SentenceItem(
+                            target="Gire a la izquierda en la calle.",
+                            source="Turn left at the street.",
+                            words=["Gire", "a", "la", "izquierda", "en", "la", "calle"],
+                        ),
+                        SentenceItem(
+                            target="El banco está cerca de aquí.",
+                            source="The bank is near here.",
+                            words=["El", "banco", "está", "cerca", "de", "aquí"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_travel",
+                    title="Travel Basics",
+                    description="Airport, bus station, ticket.",
+                    objective="Learner can navigate an airport and buy transportation tickets.",
+                    difficulty=3,
+                    order_index=2,
+                    xp_reward=25,
+                    prerequisite_skill_id="skill_directions",
+                    vocabulary=[
+                        VocabItem("el pasaporte", "the passport", hint="e_ p________"),
+                        VocabItem("el boleto", "the ticket", hint="e_ b_____"),
+                        VocabItem("el aeropuerto", "the airport", hint="e_ a_________"),
+                        VocabItem("la maleta", "the suitcase", hint="l_ m_____"),
+                        VocabItem("el vuelo", "the flight", hint="e_ v____"),
+                        VocabItem("la aduana", "customs", hint="l_ a_____"),
+                        VocabItem("embarcar", "to board", hint="e______"),
+                        VocabItem("el equipaje", "the luggage", hint="e_ e_______"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Mi pasaporte, por favor.",
+                            source="My passport, please.",
+                            words=["Mi", "pasaporte", "por", "favor", "boleto"],
+                            blank_word="pasaporte",
+                            blank_before="Mi",
+                            blank_after=", por favor.",
+                        ),
+                        SentenceItem(
+                            target="El vuelo sale a las ocho.",
+                            source="The flight leaves at eight.",
+                            words=["El", "vuelo", "sale", "a", "las", "ocho"],
+                        ),
+                        SentenceItem(
+                            target="Necesito facturar mi maleta.",
+                            source="I need to check my suitcase.",
+                            words=["Necesito", "facturar", "mi", "maleta"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_sp_transport",
+                    title="Transportation",
+                    description="Bus, train, taxi, station, stop in Spanish.",
+                    objective="Learner can navigate buses, trains, and taxis in Spanish.",
+                    difficulty=3,
+                    order_index=3,
+                    xp_reward=25,
+                    prerequisite_skill_id="skill_travel",
+                    vocabulary=[
+                        VocabItem("el autobús", "the bus", hint="e_ a______"),
+                        VocabItem("el tren", "the train", hint="e_ t___"),
+                        VocabItem("el taxi", "the taxi", hint="e_ t___"),
+                        VocabItem("la estación", "the station", hint="l_ e_______"),
+                        VocabItem("la parada", "the stop", hint="l_ p_____"),
+                        VocabItem("el billete", "the ticket", hint="e_ b______"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="¿Dónde está la parada de autobús?",
+                            source="Where is the bus stop?",
+                            words=["Dónde", "está", "la", "parada", "de", "autobús"],
+                            blank_word="parada",
+                            blank_before="¿Dónde está la",
+                            blank_after="de autobús?",
+                        ),
+                        SentenceItem(
+                            target="Necesito dos billetes para el tren.",
+                            source="I need two tickets for the train.",
+                            words=["Necesito", "dos", "billetes", "para", "el", "tren"],
+                        ),
+                        SentenceItem(
+                            target="Llama a un taxi, por favor.",
+                            source="Call a taxi, please.",
+                            words=["Llama", "a", "un", "taxi", "por", "favor"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_sp_hotels",
+                    title="Hotels",
+                    description="Reservation, key, room, reception, check-in.",
+                    objective="Learner can manage hotel reservations and requests in Spanish.",
+                    difficulty=3,
+                    order_index=4,
+                    xp_reward=25,
+                    prerequisite_skill_id="skill_sp_transport",
+                    vocabulary=[
+                        VocabItem("la reserva", "the reservation", hint="l_ r______"),
+                        VocabItem("la llave", "the key", hint="l_ l____"),
+                        VocabItem("la habitación", "the room", hint="l_ h_________"),
+                        VocabItem("la recepción", "the reception", hint="l_ r________"),
+                        VocabItem("el servicio", "the service", hint="e_ s_______"),
+                        VocabItem("la salida", "check-out", hint="l_ s_____"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Tengo una reserva a nombre de Juan.",
+                            source="I have a reservation under the name Juan.",
+                            words=["Tengo", "una", "reserva", "a", "nombre", "de", "Juan"],
+                            blank_word="reserva",
+                            blank_before="Tengo una",
+                            blank_after="a nombre de Juan.",
+                        ),
+                        SentenceItem(
+                            target="¿Dónde está mi llave de habitación?",
+                            source="Where is my room key?",
+                            words=["Dónde", "está", "mi", "llave", "de", "habitación"],
+                        ),
+                        SentenceItem(
+                            target="La recepción está abierta.",
+                            source="Reception is open.",
+                            words=["La", "recepción", "está", "abierta"],
+                        ),
+                    ],
+                ),
+            ],
+        ),
+        # ─────────────────────────────────────────────────────────────
+        # UNIT 4 — Communication
+        # ─────────────────────────────────────────────────────────────
+        UnitSpec(
+            id="unit_04",
+            title="Unit 4: Communication",
+            description="Ask questions, state time/dates, shop in stores, and order at restaurants.",
+            order_index=4,
+            skills=[
+                SkillSpec(
+                    id="skill_sp_questions",
+                    title="Questions",
+                    description="Qué, dónde, cuándo, por qué, quién, cómo.",
+                    objective="Learner can formulate question words in Spanish.",
+                    difficulty=4,
+                    order_index=1,
+                    xp_reward=25,
+                    prerequisite_skill_id="skill_sp_hotels",
+                    vocabulary=[
+                        VocabItem("¿Qué?", "What?", hint="¿Q__?"),
+                        VocabItem("¿Dónde?", "Where?", hint="¿D____?"),
+                        VocabItem("¿Cuándo?", "When?", hint="¿C_____?"),
+                        VocabItem("¿Por qué?", "Why?", hint="¿P__ q__?"),
+                        VocabItem("¿Quién?", "Who?", hint="¿Q_____?"),
+                        VocabItem("¿Cómo?", "How?", hint="¿C____?"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="¿Qué hora es?",
+                            source="What time is it?",
+                            words=["Qué", "hora", "es"],
+                            blank_word="Qué",
+                            blank_before="¿",
+                            blank_after="hora es?",
+                        ),
+                        SentenceItem(
+                            target="¿Cuándo llega el avión?",
+                            source="When does the plane arrive?",
+                            words=["Cuándo", "llega", "el", "avión"],
+                        ),
+                        SentenceItem(
+                            target="¿Por qué estudias español?",
+                            source="Why do you study Spanish?",
+                            words=["Por", "qué", "estudias", "español"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_sp_time",
+                    title="Time & Dates",
+                    description="Hours, days of week, months, yesterday, tomorrow in Spanish.",
+                    objective="Learner can tell time and schedule dates in Spanish.",
+                    difficulty=4,
+                    order_index=2,
+                    xp_reward=25,
+                    prerequisite_skill_id="skill_sp_questions",
+                    vocabulary=[
+                        VocabItem("la hora", "the hour/time", hint="l_ h___"),
+                        VocabItem("lunes", "Monday", hint="l____"),
+                        VocabItem("hoy", "today", hint="h__"),
+                        VocabItem("mañana", "tomorrow", hint="m_____"),
+                        VocabItem("ayer", "yesterday", hint="a___"),
+                        VocabItem("la semana", "the week", hint="l_ s_____"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Hoy es lunes por la mañana.",
+                            source="Today is Monday morning.",
+                            words=["Hoy", "es", "lunes", "por", "la", "mañana"],
+                            blank_word="lunes",
+                            blank_before="Hoy es",
+                            blank_after="por la mañana.",
+                        ),
+                        SentenceItem(
+                            target="Nos vemos mañana a las cinco.",
+                            source="See you tomorrow at five.",
+                            words=["Nos", "vemos", "mañana", "a", "las", "cinco"],
+                        ),
+                        SentenceItem(
+                            target="Ayer fue un día excelente.",
+                            source="Yesterday was an excellent day.",
+                            words=["Ayer", "fue", "un", "día", "excelente"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_sp_shopping",
+                    title="Shopping",
+                    description="Price, buy, cost, discount, size, cash in Spanish.",
+                    objective="Learner can inquire about prices and purchase goods.",
+                    difficulty=4,
+                    order_index=3,
+                    xp_reward=25,
+                    prerequisite_skill_id="skill_sp_time",
+                    vocabulary=[
+                        VocabItem("comprar", "to buy", hint="c______"),
+                        VocabItem("el precio", "the price", hint="e_ p_____"),
+                        VocabItem("el descuento", "the discount", hint="e_ d________"),
+                        VocabItem("la talla", "the size", hint="l_ t____"),
+                        VocabItem("el efectivo", "the cash", hint="e_ e_______"),
+                        VocabItem("cuánto cuesta", "how much it costs", hint="c_____ c_____"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="¿Cuánto cuesta esta camisa?",
+                            source="How much does this shirt cost?",
+                            words=["Cuánto", "cuesta", "esta", "camisa"],
+                            blank_word="cuesta",
+                            blank_before="¿Cuánto",
+                            blank_after="esta camisa?",
+                        ),
+                        SentenceItem(
+                            target="Quiero comprar un regalo.",
+                            source="I want to buy a gift.",
+                            words=["Quiero", "comprar", "un", "regalo"],
+                        ),
+                        SentenceItem(
+                            target="Pago en efectivo, por favor.",
+                            source="I pay in cash, please.",
+                            words=["Pago", "en", "efectivo", "por", "favor"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_sp_restaurants",
+                    title="Restaurants",
+                    description="Ordering food, asking for menu, bill, dessert.",
+                    objective="Learner can navigate dining out in a restaurant in Spanish.",
+                    difficulty=4,
+                    order_index=4,
+                    xp_reward=25,
+                    prerequisite_skill_id="skill_sp_shopping",
+                    vocabulary=[
+                        VocabItem("el menú", "the menu", hint="e_ m___"),
+                        VocabItem("la cuenta", "the bill", hint="l_ c_____"),
+                        VocabItem("el camarero", "the waiter", hint="e_ c_______"),
+                        VocabItem("el postre", "the dessert", hint="e_ p_____"),
+                        VocabItem("pedir", "to order", hint="p____"),
+                        VocabItem("delicioso", "delicious", hint="d________"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="¿Nos trae la cuenta, por favor?",
+                            source="Will you bring us the bill, please?",
+                            words=["Nos", "trae", "la", "cuenta", "por", "favor"],
+                            blank_word="cuenta",
+                            blank_before="¿Nos trae la",
+                            blank_after=", por favor?",
+                        ),
+                        SentenceItem(
+                            target="Quisiera pedir el pescado.",
+                            source="I would like to order the fish.",
+                            words=["Quisiera", "pedir", "el", "pescado"],
+                        ),
+                        SentenceItem(
+                            target="El postre está muy delicioso.",
+                            source="The dessert is very delicious.",
+                            words=["El", "postre", "está", "muy", "delicioso"],
+                        ),
+                    ],
+                ),
+            ],
+        ),
+        # ─────────────────────────────────────────────────────────────
+        # UNIT 5 — Conversation
+        # ─────────────────────────────────────────────────────────────
+        UnitSpec(
+            id="unit_05",
+            title="Unit 5: Conversation",
+            description="Discuss hobbies, work environment, future plans, and fluid conversation.",
+            order_index=5,
+            skills=[
+                SkillSpec(
+                    id="skill_sp_hobbies",
+                    title="Hobbies",
+                    description="Music, sports, reading, travel, movies.",
+                    objective="Learner can discuss interests and free-time activities in Spanish.",
+                    difficulty=5,
+                    order_index=1,
+                    xp_reward=30,
+                    prerequisite_skill_id="skill_sp_restaurants",
+                    vocabulary=[
+                        VocabItem("la música", "the music", hint="l_ m_____"),
+                        VocabItem("los deportes", "the sports", hint="l__ d_______"),
+                        VocabItem("leer", "to read", hint="l___"),
+                        VocabItem("viajar", "to travel", hint="v_____"),
+                        VocabItem("las películas", "the movies", hint="l__ p________"),
+                        VocabItem("cocinar", "to cook", hint="c______"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Me encanta escuchar música.",
+                            source="I love listening to music.",
+                            words=["Me", "encanta", "escuchar", "música"],
+                            blank_word="música",
+                            blank_before="Me encanta escuchar",
+                            blank_after=".",
+                        ),
+                        SentenceItem(
+                            target="Jugar al fútbol es mi pasatiempo favorito.",
+                            source="Playing soccer is my favorite hobby.",
+                            words=["Jugar", "al", "fútbol", "es", "mi", "pasatiempo", "favorito"],
+                        ),
+                        SentenceItem(
+                            target="Ella disfruta leer libros en la tarde.",
+                            source="She enjoys reading books in the afternoon.",
+                            words=["Ella", "disfruta", "leer", "libros", "en", "la", "tarde"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_sp_work",
+                    title="Work",
+                    description="Office, job, meeting, boss, company, career.",
+                    objective="Learner can converse about work tasks and careers in Spanish.",
+                    difficulty=5,
+                    order_index=2,
+                    xp_reward=30,
+                    prerequisite_skill_id="skill_sp_hobbies",
+                    vocabulary=[
+                        VocabItem("el trabajo", "the work/job", hint="e_ t______"),
+                        VocabItem("la oficina", "the office", hint="l_ o_____"),
+                        VocabItem("la reunión", "the meeting", hint="l_ r______"),
+                        VocabItem("el jefe", "the boss", hint="e_ j___"),
+                        VocabItem("la empresa", "the company", hint="l_ e______"),
+                        VocabItem("el proyecto", "the project", hint="e_ p_______"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Tengo una reunión importante hoy.",
+                            source="I have an important meeting today.",
+                            words=["Tengo", "una", "reunión", "importante", "hoy"],
+                            blank_word="reunión",
+                            blank_before="Tengo una",
+                            blank_after="importante hoy.",
+                        ),
+                        SentenceItem(
+                            target="Mi empresa trabaja en tecnología.",
+                            source="My company works in technology.",
+                            words=["Mi", "empresa", "trabaja", "en", "tecnología"],
+                        ),
+                        SentenceItem(
+                            target="Completamos el proyecto a tiempo.",
+                            source="We completed the project on time.",
+                            words=["Completamos", "el", "proyecto", "a", "tiempo"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_sp_plans",
+                    title="Plans",
+                    description="Future plans, intent, hope, promise, next week.",
+                    objective="Learner can discuss upcoming plans and future goals in Spanish.",
+                    difficulty=5,
+                    order_index=3,
+                    xp_reward=30,
+                    prerequisite_skill_id="skill_sp_work",
+                    vocabulary=[
+                        VocabItem("los planes", "the plans", hint="l__ p_____"),
+                        VocabItem("pensar", "to intend/plan", hint="p_____"),
+                        VocabItem("esperar", "to hope", hint="e______"),
+                        VocabItem("la próxima semana", "next week", hint="l_ p______ s_____"),
+                        VocabItem("el futuro", "the future", hint="e_ f_____"),
+                        VocabItem("viajaremos", "we will travel", hint="v_________"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Pienso viajar a España la próxima semana.",
+                            source="I plan to travel to Spain next week.",
+                            words=["Pienso", "viajar", "a", "España", "la", "próxima", "semana"],
+                            blank_word="viajar",
+                            blank_before="Pienso",
+                            blank_after="a España la próxima semana.",
+                        ),
+                        SentenceItem(
+                            target="Espero que tengas un buen fin de semana.",
+                            source="I hope you have a great weekend.",
+                            words=["Espero", "que", "tengas", "un", "buen", "fin", "de", "semana"],
+                        ),
+                        SentenceItem(
+                            target="Lograremos nuestros objetivos.",
+                            source="We will achieve our goals.",
+                            words=["Lograremos", "nuestros", "objetivos"],
+                        ),
+                    ],
+                ),
+                SkillSpec(
+                    id="skill_sp_conversation",
+                    title="Conversation",
+                    description="Fluency, opinion, debate, dialogue, mastery.",
+                    objective="Learner can engage in fluid conversational exchanges in Spanish.",
+                    difficulty=5,
+                    order_index=4,
+                    xp_reward=35,
+                    prerequisite_skill_id="skill_sp_plans",
+                    vocabulary=[
+                        VocabItem("la conversación", "the conversation", hint="l_ c___________"),
+                        VocabItem("en mi opinión", "in my opinion", hint="e_ m_ o______"),
+                        VocabItem("estoy de acuerdo", "I agree", hint="e____ d_ a______"),
+                        VocabItem("fluidez", "fluency", hint="f______"),
+                        VocabItem("discutir", "to discuss", hint="d_______"),
+                        VocabItem("la experiencia", "the experience", hint="l_ e__________"),
+                    ],
+                    sentences=[
+                        SentenceItem(
+                            target="Fue una conversación muy agradable.",
+                            source="It was a very pleasant conversation.",
+                            words=["Fue", "una", "conversación", "muy", "agradable"],
+                            blank_word="conversación",
+                            blank_before="Fue una",
+                            blank_after="muy agradable.",
+                        ),
+                        SentenceItem(
+                            target="Estoy totalmente de acuerdo contigo.",
+                            source="I completely agree with you.",
+                            words=["Estoy", "totalmente", "de", "acuerdo", "contigo"],
+                        ),
+                        SentenceItem(
+                            target="¡Felicitaciones por lograr fluidez en español!",
+                            source="Congratulations on achieving fluency in Spanish!",
+                            words=["Felicitaciones", "por", "lograr", "fluidez", "en", "español"],
+                        ),
+                    ],
+                ),
+            ],
+        ),
+    ],
+)
